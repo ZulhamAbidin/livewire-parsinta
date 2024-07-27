@@ -1,5 +1,5 @@
 <?php
-
+//app/livewire/About.php
 namespace App\Livewire;
 
 
@@ -9,7 +9,7 @@ use Livewire\Component;
 #[Title('About')]
 
 class About extends Component
-{
+{   
     public function render()
     {
         return view('livewire.about');

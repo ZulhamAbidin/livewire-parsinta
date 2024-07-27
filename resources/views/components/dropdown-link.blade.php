@@ -1,1 +1,12 @@
-<a {{ $attributes->merge(['class' => 'block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out']) }}>{{ $slot }}</a>
+<li class="pc-item pc-hasmenu">
+    <a href="#!" class="pc-link">
+      <span class="pc-micon">
+        <svg class="pc-icon">
+          <use xlink:href="#custom-graph"></use>
+        </svg>
+      </span>
+      <span class="pc-mtext">Charts</span><span class="pc-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span></a>
+    <ul class="pc-submenu" style="display: none;">
+      <li class="pc-item"><a class="pc-link" href="../chart/chart-apex.html">Apex Chart</a></li>
+    </ul>
+  </li>

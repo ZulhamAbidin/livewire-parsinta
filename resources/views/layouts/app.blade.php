@@ -1,257 +1,398 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-
-    <!-- META DATA -->
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <title>{{ $title ?? config('app.name') }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-
-    <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico" />
-
-    <!-- TITLE -->
-    <title>{{ $title ?? config('app.name') }} </title>
-
-    <!-- BOOTSTRAP CSS -->
-    <link id="style" href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- STYLE CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet" />
-    <link href="../assets/css/dark-style.css" rel="stylesheet" />
-    <link href="../assets/css/transparent-style.css" rel="stylesheet">
-    <link href="../assets/css/skin-modes.css" rel="stylesheet" />
-
-    <!--- FONT-ICONS CSS -->
-    <link href="../assets/css/icons.css" rel="stylesheet" />
-
-    <!-- COLOR SKIN CSS -->
-    <link id="theme" rel="stylesheet" type="text/css" media="all" href="../assets/colors/color1.css" />
-
+    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/inter/inter.css') }}" id="main-font-link" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}" />
+    @livewireStyles
 </head>
 
-<body class="app sidebar-mini ltr light-mode">
+<body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme_contrast=""
+    data-pc-theme="light">
 
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
 
-    <!-- PAGE -->
-    <div class="page">
-        <div class="page-main">
+    <nav class="pc-sidebar" id="sidebar">
+        
+        <div class="m-header">
+            <a href="#" class="b-brand text-primary">
+                <img src="{{ asset('assets/images/logo-dark.svg') }}" />
+                <span class="badge bg-light-success rounded-pill ms-2 theme-version">v9.0</span>
+            </a>
+        </div>
 
-            <!-- app-Header -->
-            <div class="app-header header sticky">
-                <div class="container-fluid main-container">
-                    <div class="d-flex">
-                        <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar"
-                            href="javascript:void(0)"></a>
-                        <!-- sidebar-toggle-->
-                        <a class="logo-horizontal " href="index.html">
-                            <img src="../assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                            <img src="../assets/images/brand/logo-3.png" class="header-brand-img light-logo1"
-                                alt="logo">
+        <div class="navbar-content">
+            <div class="card pc-user-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image"
+                                class="user-avtar wid-45 rounded-circle" />
+                        </div>
+                        <div class="flex-grow-1 ms-3 me-2">
+                            <h6 class="mb-0">Jonh Smith</h6>
+                            <small>Administrator</small>
+                        </div>
+                        <a class="btn btn-icon btn-link-secondary avtar" data-bs-toggle="collapse" href="#">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-sort-outline"></use>
+                            </svg>
                         </a>
+                    </div>
+                    <div class="collapse" id="pc_sidebar_userlink">
+                        <div class="pt-3">
+                            <a href="#!">
+                                <i class="ti ti-user"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a href="#!">
+                                <i class="ti ti-settings"></i>
+                                <span>Settings</span>
+                            </a>
+                            <a href="#!">
+                                <i class="ti ti-lock"></i>
+                                <span>Lock Screen</span>
+                            </a>
+                            <a href="#!">
+                                <i class="ti ti-power"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="d-flex order-lg-2 ms-auto header-right-icons">
+            <ul class="pc-navbar">
+                <li class="pc-item pc-caption">
+                    <label>MENU</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <x-nav-link :active="request()->routeIs('home')" href="{{ route('home') }}" icon="home">Home
+                </x-nav-link>
+                <x-nav-link :active="request()->routeIs('about')" href="{{ route('about') }}" icon="user">About
+                </x-nav-link>
+                <x-nav-link :active="request()->routeIs('contact')" href="{{ route('contact') }}" icon="box-1">Contact
+                </x-nav-link>
+            </ul>
+        </div>
+    </nav>
 
-                            <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
-                                aria-controls="navbarSupportedContent-4" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon fe fe-more-vertical"></span>
-                            </button>
-                            <div class="navbar navbar-collapse responsive-navbar p-0">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-
-                                    <div class="d-flex order-lg-2">
+    <header class="pc-header">
+        <div class="header-wrapper">
+            <div class="me-auto pc-mob-drp">
+                <ul class="list-unstyled">
 
 
-                                        {{-- TOGGLE --}}
-                                        <div class="d-flex country">
-                                            <a class="nav-link icon theme-layout nav-link-bg layout-setting">
-                                                <span class="dark-layout"><i class="fe fe-moon"></i></span>
-                                                <span class="light-layout"><i class="fe fe-sun"></i></span>
-                                            </a>
+                    <li class="pc-h-item pc-sidebar-popup">
+                        <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none m-0 trig-drp-search" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-search-normal-1"></use>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu pc-h-dropdown drp-search">
+                            <form class="px-3 py-2">
+                                <input type="search" class="form-control border-0 shadow-none"
+                                    placeholder="Search here. . ." />
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ms-auto">
+                <ul class="list-unstyled">
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="false" aria-expanded="false">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-sun-1"></use>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                            <a href="#!" class="dropdown-item" onclick="layout_change('dark')">
+                                <svg class="pc-icon">
+                                    <use xlink:href="#custom-moon"></use>
+                                </svg>
+                                <span>Dark</span>
+                            </a>
+                            <a href="#!" class="dropdown-item" onclick="layout_change('light')">
+                                <svg class="pc-icon">
+                                    <use xlink:href="#custom-sun-1"></use>
+                                </svg>
+                                <span>Light</span>
+                            </a>
+                            <a href="#!" class="dropdown-item" onclick="layout_change_default()">
+                                <svg class="pc-icon">
+                                    <use xlink:href="#custom-setting-2"></use>
+                                </svg>
+                                <span>Default</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="dropdown pc-h-item header-user-profile">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+                            <img src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="user-image"
+                                class="user-avtar" />
+                        </a>
+                        <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
+                            <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                <h5 class="m-0">Profile</h5>
+                            </div>
+                            <div class="dropdown-body">
+                                <div class="profile-notification-scroll position-relative"
+                                    style="max-height: calc(100vh - 225px)">
+                                    <div class="d-flex mb-1">
+                                        <div class="flex-shrink-0">
+                                            <img src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="user-image"
+                                                class="user-avtar wid-35" />
                                         </div>
-
-                                        {{-- FULLSCREEN --}}
-                                        <div class="dropdown d-flex">
-                                            <a class="nav-link icon full-screen-link nav-link-bg">
-                                                <i class="fe fe-minimize fullscreen-button"></i>
-                                            </a>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-1">Carson Darrin 🖖</h6>
+                                            <span><a href="" class="__cf_email__"
+                                                    data-cfemail="482b293a3b2726662c293a3a2126082b272538292631662127">[email&#160;protected]</a></span>
                                         </div>
-
-                                        {{-- SETTINGS --}}
-                                        <div class="dropdown d-flex profile-1">
-                                            <a href="javascript:void(0)" data-bs-toggle="dropdown"
-                                                class="nav-link leading-none d-flex">
-                                                <img src="../assets/images/users/21.jpg" alt="profile-user"
-                                                    class="avatar mb-2 mt-2 profile-user brround cover-image">
-
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                <div class="drop-heading">
-                                                    <div class="text-center">
-                                                        <h5 class="text-dark mb-0 fs-14 fw-semibold">Percy Kewshun</h5>
-                                                        <small class="text-muted">Senior Admin</small>
-                                                    </div>
+                                    </div>
+                                    <hr class="border-secondary border-opacity-50" />
+                                    <div class="card">
+                                        <div class="card-body py-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <h5 class="mb-0 d-inline-flex align-items-center"><svg
+                                                        class="pc-icon text-muted me-2">
+                                                        <use xlink:href="#custom-notification-outline"></use>
+                                                    </svg>Notification</h5>
+                                                <div class="form-check form-switch form-check-reverse m-0">
+                                                    <input class="form-check-input f-18" type="checkbox"
+                                                        role="switch" />
                                                 </div>
-                                                <div class="dropdown-divider m-0"></div>
-                                                <a class="dropdown-item" href="profile.html">
-                                                    <i class="dropdown-icon fe fe-user"></i> Profile
-                                                </a>
-                                                <a class="dropdown-item" href="email-inbox.html">
-                                                    <i class="dropdown-icon fe fe-mail"></i> Inbox
-                                                    <span class="badge bg-danger rounded-pill float-end">5</span>
-                                                </a>
-                                                <a class="dropdown-item" href="lockscreen.html">
-                                                    <i class="dropdown-icon fe fe-lock"></i> Lockscreen
-                                                </a>
-                                                <a class="dropdown-item" href="login.html">
-                                                    <i class="dropdown-icon fe fe-alert-circle"></i> Sign out
-                                                </a>
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <p class="text-span">Manage</p>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-setting-outline"></use>
+                                            </svg>
+                                            <span>Settings</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-share-bold"></use>
+                                            </svg>
+                                            <span>Share</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-lock-outline"></use>
+                                            </svg>
+                                            <span>Change Password</span>
+                                        </span>
+                                    </a>
+                                    <hr class="border-secondary border-opacity-50" />
+                                    <p class="text-span">Team</p>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-profile-2user-outline"></use>
+                                            </svg>
+                                            <span>UI Design team</span>
+                                        </span>
+                                        <div class="user-group">
+                                            <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image"
+                                                class="avtar" />
+                                            <span class="avtar bg-danger text-white">K</span>
+                                            <span class="avtar bg-success text-white">
+                                                <svg class="pc-icon m-0">
+                                                    <use xlink:href="#custom-user"></use>
+                                                </svg>
+                                            </span>
+                                            <span class="avtar bg-light-primary text-primary">+2</span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-profile-2user-outline"></use>
+                                            </svg>
+                                            <span>Friends Groups</span>
+                                        </span>
+                                        <div class="user-group">
+                                            <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image"
+                                                class="avtar" />
+                                            <span class="avtar bg-danger text-white">K</span>
+                                            <span class="avtar bg-success text-white">
+                                                <svg class="pc-icon m-0">
+                                                    <use xlink:href="#custom-user"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <span>
+                                            <svg class="pc-icon text-muted me-2">
+                                                <use xlink:href="#custom-add-outline"></use>
+                                            </svg>
+                                            <span>Add new</span>
+                                        </span>
+                                        <div class="user-group">
+                                            <span class="avtar bg-primary text-white">
+                                                <svg class="pc-icon m-0">
+                                                    <use xlink:href="#custom-add-outline"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <hr class="border-secondary border-opacity-50" />
+                                    <div class="d-grid mb-3">
+                                        <button class="btn btn-primary">
+                                            <svg class="pc-icon me-2">
+                                                <use xlink:href="#custom-logout-1-outline"></use>
+                                            </svg>Logout
+                                        </button>
+                                    </div>
+                                    <div class="card border-0 shadow-none drp-upgrade-card mb-0"
+                                        style="background-image: url({{ asset('assets/images/layout/img-profile-card.jpg') }})">
+                                        <div class="card-body">
+                                            <div class="user-group">
+                                                <img src="{{ asset('assets/images/user/avatar-1.jpg') }}"
+                                                    alt="user-image" class="avtar" />
+                                                <img src="{{ asset('assets/images/user/avatar-2.jpg') }}"
+                                                    alt="user-image" class="avtar" />
+                                                <img src="{{ asset('assets/images/user/avatar-3.jpg') }}"
+                                                    alt="user-image" class="avtar" />
+                                                <img src="{{ asset('assets/images/user/avatar-4.jpg') }}"
+                                                    alt="user-image" class="avtar" />
+                                                <img src="{{ asset('assets/images/user/avatar-5.jpg') }}"
+                                                    alt="user-image" class="avtar" />
+                                                <span class="avtar bg-light-primary text-primary">+20</span>
+                                            </div>
+                                            <h3 class="my-3 text-dark">245.3k <small
+                                                    class="text-muted">Followers</small></h3>
+                                            <div class="btn btn btn-warning">
+                                                <svg class="pc-icon me-2">
+                                                    <use xlink:href="#custom-logout-1-outline"></use>
+                                                </svg>
+                                                Upgrade to Business
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
-            <!-- /app-Header -->
+        </div>
+    </header>
 
-            <!--APP-SIDEBAR-->
-           <x-navigation-menu/>
+    @include('partials.svg-sprite')
 
-            <!--app-content open-->
-            <div class="main-content app-content mt-0">
-                <div class="side-app">
 
-                    <!-- CONTAINER -->
-                    <div class="main-container container-fluid">
+    <div class="pc-container">
+        <div class="pc-content">
 
-                        <!-- PAGE-HEADER -->
-                        <div class="page-header">
-                            <h1 class="page-title">Dashboard 01</h1>
-                            <div>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
-                                </ol>
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="">Home</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
+                                <li class="breadcrumb-item" aria-current="page">Sample Page</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h2 class="mb-0">Sample Page</h2>
                             </div>
                         </div>
-                        <!-- PAGE-HEADER END -->
-
-                        <!-- ROW-1 -->
-                        <div class="row">
-                            {{ $slot }}
-                        </div>
-                        <!-- ROW-1 END -->
-
                     </div>
-                    <!-- CONTAINER END -->
                 </div>
             </div>
-            <!--app-content close-->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5> {{ $slot }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
-
-
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with <span
-                            class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All
-                        rights reserved.
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- FOOTER END -->
-
     </div>
 
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+    <footer class="pc-footer">
+        <div class="footer-wrapper container-fluid">
+            <div class="row">
+                <div class="col my-1">
+                    <p class="m-0">Able Pro &#9829; crafted by Team <a href="" target="_blank">Phoenixcoded</a></p>
+                </div>
+                <div class="col-auto my-1">
+                    <ul class="list-inline footer-link mb-0">
+                        <li class="list-inline-item"><a href="">Home</a></li>
+                        <li class="list-inline-item"><a href="" target="_blank">Documentation</a></li>
+                        <li class="list-inline-item"><a href="" target="_blank">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- JQUERY JS -->
-    <script src="../assets/js/jquery.min.js"></script>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- SPARKLINE JS-->
-    <script src="../assets/js/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
 
-    <!-- Sticky js -->
-    <script src="../assets/js/sticky.js"></script>
+    <script>
+        layout_change('light');
+    </script>
 
-    <!-- CHART-CIRCLE JS-->
-    <script src="../assets/js/circle-progress.min.js"></script>
+    <script>
+        preset_change("preset-1");
+    </script>
 
-    <!-- PIETY CHART JS-->
-    <script src="../assets/plugins/peitychart/jquery.peity.min.js"></script>
-    <script src="../assets/plugins/peitychart/peitychart.init.js"></script>
-
-    <!-- SIDEBAR JS -->
-    <script src="../assets/plugins/sidebar/sidebar.js"></script>
-
-    <!-- Perfect SCROLLBAR JS-->
-    <script src="../assets/plugins/p-scroll/perfect-scrollbar.js"></script>
-    <script src="../assets/plugins/p-scroll/pscroll.js"></script>
-    <script src="../assets/plugins/p-scroll/pscroll-1.js"></script>
-
-    <!-- INTERNAL CHARTJS CHART JS-->
-    <script src="../assets/plugins/chart/Chart.bundle.js"></script>
-    <script src="../assets/plugins/chart/rounded-barchart.js"></script>
-    <script src="../assets/plugins/chart/utils.js"></script>
-
-    <!-- INTERNAL SELECT2 JS -->
-    <script src="../assets/plugins/select2/select2.full.min.js"></script>
-
-    <!-- INTERNAL Data tables js-->
-    <script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="../assets/plugins/datatable/dataTables.responsive.min.js"></script>
-
-    <!-- INTERNAL APEXCHART JS -->
-    <script src="../assets/js/apexcharts.js"></script>
-    <script src="../assets/plugins/apexchart/irregular-data-series.js"></script>
-
-    <!-- INTERNAL Flot JS -->
-    <script src="../assets/plugins/flot/jquery.flot.js"></script>
-    <script src="../assets/plugins/flot/jquery.flot.fillbetween.js"></script>
-    <script src="../assets/plugins/flot/chart.flot.sampledata.js"></script>
-    <script src="../assets/plugins/flot/dashboard.sampledata.js"></script>
-
-    <!-- INTERNAL Vector js -->
-    <script src="../assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="../assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-    <!-- SIDE-MENU JS-->
-    <script src="../assets/plugins/sidemenu/sidemenu.js"></script>
-
-    <!-- TypeHead js -->
-    <script src="../assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
-    <script src="../assets/js/typehead.js"></script>
-
-    <!-- INTERNAL INDEX JS -->
-    <script src="../assets/js/index1.js"></script>
-
-    <!-- Color Theme js -->
-    <script src="../assets/js/themeColors.js"></script>
-
-    <!-- CUSTOM JS -->
-    <script src="../assets/js/custom.js"></script>
-
+@livewireScripts
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('toggleSidebar', function () {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+</script>
 
 </body>
 

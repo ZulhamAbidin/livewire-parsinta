@@ -1,16 +1,16 @@
-@props(['active' => 'false'])
+@props(['active' => false, 'icon' => ''])
 
 @php
-$classes = ($active ?? false)
-            ? 'side-menu__item has-link active'
-            : 'side-menu__item has-link';
+$classes = ($active) ? 'pc-item active' : 'pc-item';
 @endphp
 
-<li class="slide">
-
-        <a wire:navigate {{ $attributes->merge(['class' => $classes ]) }} data-bs-toggle="slide"><i
-                class="side-menu__icon fe fe-home"></i><span
-                class="side-menu__label"> {{ $slot }}</span></a>
-    </li>
-
+<li wire:navigate {{ $attributes->merge(['class' => $classes ]) }}>
+    <a href="{{ $attributes->get('href', '#') }}" class="pc-link" data-icon="custom-{{ $icon }}">
+        <span class="pc-micon">
+            <svg class="pc-icon">
+                <use xlink:href="#custom-{{ $icon }}"></use>
+            </svg>
+        </span>
+        <span class="pc-mtext">{{ $slot }}</span>
+    </a>
 </li>
