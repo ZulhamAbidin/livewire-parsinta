@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link" />
     <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}" />
     @livewireStyles
+    
 </head>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme_contrast=""
@@ -26,85 +27,115 @@
         </div>
     </div>
 
-    <nav class="pc-sidebar" id="sidebar">
-        
-        <div class="m-header">
-            <a href="#" class="b-brand text-primary">
-                <img src="{{ asset('assets/images/logo-dark.svg') }}" />
-                <span class="badge bg-light-success rounded-pill ms-2 theme-version">v9.0</span>
-            </a>
-        </div>
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="#" class="b-brand text-primary">
+                    <img src="{{ asset('assets/images/logo-dark.svg') }}" />
+                    <span class="badge bg-light-success rounded-pill ms-2 theme-version">v9.0</span>
+                </a>
+            </div>
+            <div class="navbar-content">
 
-        <div class="navbar-content">
-            <div class="card pc-user-card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0">
-                            <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image"
-                                class="user-avtar wid-45 rounded-circle" />
+                <div class="card pc-user-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" alt="user-image"
+                                    class="user-avtar wid-45 rounded-circle" />
+                            </div>
+                            <div class="flex-grow-1 ms-3 me-2">
+                                <h6 class="mb-0">Jonh Smith</h6>
+                                <small>Administrator</small>
+                            </div>
+                            <a class="btn btn-icon btn-link-secondary avtar" data-bs-toggle="collapse"
+                                href="#pc_sidebar_userlink">
+                                <svg class="pc-icon">
+                                    <use xlink:href="#custom-sort-outline"></use>
+                                </svg>
+                            </a>
                         </div>
-                        <div class="flex-grow-1 ms-3 me-2">
-                            <h6 class="mb-0">Jonh Smith</h6>
-                            <small>Administrator</small>
-                        </div>
-                        <a class="btn btn-icon btn-link-secondary avtar" data-bs-toggle="collapse" href="#">
-                            <svg class="pc-icon">
-                                <use xlink:href="#custom-sort-outline"></use>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="collapse" id="pc_sidebar_userlink">
-                        <div class="pt-3">
-                            <a href="#!">
-                                <i class="ti ti-user"></i>
-                                <span>My Account</span>
-                            </a>
-                            <a href="#!">
-                                <i class="ti ti-settings"></i>
-                                <span>Settings</span>
-                            </a>
-                            <a href="#!">
-                                <i class="ti ti-lock"></i>
-                                <span>Lock Screen</span>
-                            </a>
-                            <a href="#!">
-                                <i class="ti ti-power"></i>
-                                <span>Logout</span>
-                            </a>
+                        <div class="collapse pc-user-links" id="pc_sidebar_userlink">
+                            <div class="pt-3">
+                                <a href="#!">
+                                    <i class="ti ti-user"></i>
+                                    <span>My Account</span>
+                                </a>
+                                <a href="#!">
+                                    <i class="ti ti-settings"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <a href="#!">
+                                    <i class="ti ti-lock"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+                                <a href="#!">
+                                    <i class="ti ti-power"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <ul class="pc-navbar">
-                <li class="pc-item pc-caption">
-                    <label>MENU</label>
-                    <svg class="pc-icon">
-                        <use xlink:href="#custom-presentation-chart"></use>
-                    </svg>
-                </li>
-                <x-nav-link :active="request()->routeIs('home')" href="{{ route('home') }}" icon="home">Home
-                </x-nav-link>
-                <x-nav-link :active="request()->routeIs('about')" href="{{ route('about') }}" icon="user">About
-                </x-nav-link>
-                <x-nav-link :active="request()->routeIs('contact')" href="{{ route('contact') }}" icon="box-1">Contact
-                </x-nav-link>
-            </ul>
+                <ul class="pc-navbar">
+
+                    <li class="pc-item pc-caption">
+                        <label>Navigation</label>
+                    </li>
+
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon">
+                                <svg class="pc-icon">
+                                    <use xlink:href="#custom-status-up"></use>
+                                </svg>
+                            </span>
+                            <span class="pc-mtext">Dashboard</span>
+                            <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                            <span class="pc-badge">2</span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="">Default</a></li>
+                            <li class="pc-item"><a class="pc-link" href="">Analytics</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="pc-item pc-caption">
+                        <label>MENU</label>
+                        <svg class="pc-icon">
+                            <use xlink:href="#custom-presentation-chart"></use>
+                        </svg>
+                    </li>
+
+                    <x-nav-link :active="request()->routeIs('home')" href="{{ route('home') }}" icon="home">Home
+                    </x-nav-link>
+                    <x-nav-link :active="request()->routeIs('about')" href="{{ route('about') }}" icon="user">About
+                    </x-nav-link>
+                    <x-nav-link :active="request()->routeIs('contact')" href="{{ route('contact') }}" icon="box-1">
+                        Contact </x-nav-link>
+
+                </ul>
+            </div>
         </div>
     </nav>
 
     <header class="pc-header">
         <div class="header-wrapper">
+            <!-- [Mobile Media Block] start -->
             <div class="me-auto pc-mob-drp">
                 <ul class="list-unstyled">
-
-
+                    <!-- ======= Menu collapse Icon ===== -->
+                    <li class="pc-h-item pc-sidebar-collapse">
+                        <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
                     <li class="pc-h-item pc-sidebar-popup">
                         <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
                             <i class="ti ti-menu-2"></i>
                         </a>
                     </li>
-
                     <li class="dropdown pc-h-item">
                         <a class="pc-head-link dropdown-toggle arrow-none m-0 trig-drp-search" data-bs-toggle="dropdown"
                             href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -121,7 +152,7 @@
                     </li>
                 </ul>
             </div>
-
+            <!-- [Mobile Media Block end] -->
             <div class="ms-auto">
                 <ul class="list-unstyled">
                     <li class="dropdown pc-h-item">
@@ -152,6 +183,157 @@
                             </a>
                         </div>
                     </li>
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="false" aria-expanded="false">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-setting-2"></use>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                            <a href="#!" class="dropdown-item">
+                                <i class="ti ti-user"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ti ti-settings"></i>
+                                <span>Settings</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ti ti-headset"></i>
+                                <span>Support</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ti ti-lock"></i>
+                                <span>Lock Screen</span>
+                            </a>
+                            <a href="#!" class="dropdown-item">
+                                <i class="ti ti-power"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="pc-h-item">
+                        <a href="#" class="pc-head-link me-0" data-bs-toggle="offcanvas" data-bs-target="#announcement"
+                            aria-controls="announcement">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-flash"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="dropdown pc-h-item">
+                        <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-haspopup="false" aria-expanded="false">
+                            <svg class="pc-icon">
+                                <use xlink:href="#custom-notification"></use>
+                            </svg>
+                            <span class="badge bg-success pc-h-badge">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+                            <div class="dropdown-header d-flex align-items-center justify-content-between">
+                                <h5 class="m-0">Notifications</h5>
+                                <a href="#!" class="btn btn-link btn-sm">Mark all read</a>
+                            </div>
+                            <div class="dropdown-body text-wrap header-notification-scroll position-relative"
+                                style="max-height: calc(100vh - 215px)">
+                                <p class="text-span">Today</p>
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="pc-icon text-primary">
+                                                    <use xlink:href="#custom-layer"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="float-end text-sm text-muted">2 min ago</span>
+                                                <h5 class="text-body mb-2">UI/UX Design</h5>
+                                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text
+                                                    ever since the 1500s, when an unknown printer took a galley of
+                                                    type and scrambled it to make a type</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="pc-icon text-primary">
+                                                    <use xlink:href="#custom-sms"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="float-end text-sm text-muted">1 hour ago</span>
+                                                <h5 class="text-body mb-2">Message</h5>
+                                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text
+                                                    ever since the 1500.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-span">Yesterday</p>
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="pc-icon text-primary">
+                                                    <use xlink:href="#custom-document-text"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="float-end text-sm text-muted">2 hour ago</span>
+                                                <h5 class="text-body mb-2">Forms</h5>
+                                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text
+                                                    ever since the 1500s, when an unknown printer took a galley of
+                                                    type and scrambled it to make a type</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="pc-icon text-primary">
+                                                    <use xlink:href="#custom-user-bold"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="float-end text-sm text-muted">12 hour ago</span>
+                                                <h5 class="text-body mb-2">Challenge invitation</h5>
+                                                <p class="mb-2"><span class="text-dark">Jonny aber</span> invites to
+                                                    join the challenge</p>
+                                                <button class="btn btn-sm btn-outline-secondary me-2">Decline</button>
+                                                <button class="btn btn-sm btn-primary">Accept</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="pc-icon text-primary">
+                                                    <use xlink:href="#custom-security-safe"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="float-end text-sm text-muted">5 hour ago</span>
+                                                <h5 class="text-body mb-2">Security</h5>
+                                                <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text
+                                                    ever since the 1500s, when an unknown printer took a galley of
+                                                    type and scrambled it to make a type</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center py-2">
+                                <a href="#!" class="link-danger">Clear all Notifications</a>
+                            </div>
+                        </div>
+                    </li>
                     <li class="dropdown pc-h-item header-user-profile">
                         <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
@@ -172,8 +354,9 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="mb-1">Carson Darrin 🖖</h6>
-                                            <span><a href="" class="__cf_email__"
-                                                    data-cfemail="482b293a3b2726662c293a3a2126082b272538292631662127">[email&#160;protected]</a></span>
+                                            <span><a href=""
+                                                    class="__cf_email__"
+                                                    data-cfemail=""></a></span>
                                         </div>
                                     </div>
                                     <hr class="border-secondary border-opacity-50" />
@@ -313,8 +496,78 @@
         </div>
     </header>
 
-    @include('partials.svg-sprite')
+    <div class="offcanvas pc-announcement-offcanvas offcanvas-end" tabindex="-1" id="announcement"
+        aria-labelledby="announcementLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="announcementLabel">What’s new announcement?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p class="text-span">Today</p>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="align-items-center d-flex flex-wrap gap-2 mb-3">
+                        <div class="badge bg-light-success f-12">Big News</div>
+                        <p class="mb-0 text-muted">2 min ago</p>
+                        <span class="badge dot bg-warning"></span>
+                    </div>
+                    <h5 class="mb-3">Able Pro is Redesigned</h5>
+                    <p class="text-muted">Able Pro is completely renowed with high aesthetics User Interface.</p>
+                    <img src="../assets/images/layout/img-announcement-1.png" alt="img" class="img-fluid mb-3" />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-grid"><a class="btn btn-outline-secondary"
+                                    href="../../../../external.html?link=https://1.envato.market/c/1289604/275988/4415?subId1=phoenixcoded&amp;u=https%3A%2F%2Fthemeforest.net%2Fitem%2Fable-pro-responsive-bootstrap-4-admin-template%2F19300403"
+                                    target="_blank">Check Now</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="align-items-center d-flex flex-wrap gap-2 mb-3">
+                        <div class="badge bg-light-warning f-12">Offer</div>
+                        <p class="mb-0 text-muted">2 hour ago</p>
+                        <span class="badge dot bg-warning"></span>
+                    </div>
+                    <h5 class="mb-3">Able Pro is in best offer price</h5>
+                    <p class="text-muted">Download Able Pro exclusive on themeforest with best price. </p>
+                    <a href="../../../../external.html?link=https://1.envato.market/c/1289604/275988/4415?subId1=phoenixcoded&amp;u=https%3A%2F%2Fthemeforest.net%2Fitem%2Fable-pro-responsive-bootstrap-4-admin-template%2F19300403"
+                        target="_blank"><img src="../assets/images/layout/img-announcement-2.png" alt="img"
+                            class="img-fluid" /></a>
+                </div>
+            </div>
 
+            <p class="text-span mt-4">Yesterday</p>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="align-items-center d-flex flex-wrap gap-2 mb-3">
+                        <div class="badge bg-light-primary f-12">Blog</div>
+                        <p class="mb-0 text-muted">12 hour ago</p>
+                        <span class="badge dot bg-warning"></span>
+                    </div>
+                    <h5 class="mb-3">Featured Dashboard Template</h5>
+                    <p class="text-muted">Do you know Able Pro is one of the featured dashboard template selected by
+                        Themeforest team.?</p>
+                    <img src="../assets/images/layout/img-announcement-3.png" alt="img" class="img-fluid" />
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="align-items-center d-flex flex-wrap gap-2 mb-3">
+                        <div class="badge bg-light-primary f-12">Announcement</div>
+                        <p class="mb-0 text-muted">12 hour ago</p>
+                        <span class="badge dot bg-warning"></span>
+                    </div>
+                    <h5 class="mb-3">Buy Once - Get Free Updated lifetime</h5>
+                    <p class="text-muted">Get the lifetime free updates once you purchase the Able Pro.</p>
+                    <img src="../assets/images/layout/img-announcement-4.png" alt="img" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('partials.svg-sprite')
 
     <div class="pc-container">
         <div class="pc-content">
@@ -346,7 +599,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -369,31 +621,220 @@
         </div>
     </footer>
 
-
-
+    <script data-cfasync="false"  src="{{ asset('https://cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/fonts/custom-font.js') }}"></script>
+    <script src="{{ asset('assets/js/pcoded.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
+    
 
     <script>
         layout_change('light');
     </script>
-
+    <script>
+        layout_sidebar_change('false');
+    </script>
+    <script>
+        change_box_container('false');
+    </script>
+    <script>
+        layout_caption_change('true');
+    </script>
+    <script>
+        layout_rtl_change('false');
+    </script>
     <script>
         preset_change("preset-1");
     </script>
 
-@livewireScripts
-<script>
-    document.addEventListener('livewire:load', function () {
-        Livewire.on('toggleSidebar', function () {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-        });
-    });
-</script>
+    <div class="pct-c-btn">
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvas_pc_layout">
+            <svg class="pc-icon">
+                <use xlink:href="#custom-setting-2"></use>
+            </svg>
+        </a>
+    </div>
 
+
+    {{-- Settings --}}
+    <div class="offcanvas border-0 pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Settings</h5>
+            <button type="button" class="btn btn-icon btn-link-danger" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                    class="ti ti-x"></i></button>
+        </div>
+        <div class="pct-body" style="height: calc(100% - 85px)">
+            <div class="offcanvas-body py-0">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="pc-dark">
+                            <h6 class="mb-1">Theme Mode</h6>
+                            <p class="text-muted text-sm">Choose light or dark mode or Auto</p>
+                            <div class="row theme-layout">
+                                <div class="col-4">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn active" data-value="true"
+                                            onclick="layout_change('light');">
+                                            <svg class="pc-icon text-warning">
+                                                <use xlink:href="#custom-sun-1"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn" data-value="false"
+                                            onclick="layout_change('dark');">
+                                            <svg class="pc-icon">
+                                                <use xlink:href="#custom-moon"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn" data-value="default"
+                                            onclick="layout_change_default();">
+                                            <svg class="pc-icon">
+                                                <use xlink:href="#custom-setting-2"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <h6 class="mb-1">Theme Contrast</h6>
+                        <p class="text-muted text-sm">Choose theme contrast</p>
+                        <div class="row theme-contrast">
+                            <div class="col-6">
+                                <div class="d-grid">
+                                    <button class="preset-btn btn" data-value="true"
+                                        onclick="layout_sidebar_change('true');">
+                                        <svg class="pc-icon">
+                                            <use xlink:href="#custom-mask"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-grid">
+                                    <button class="preset-btn btn active" data-value="false"
+                                        onclick="layout_sidebar_change('false');">
+                                        <svg class="pc-icon">
+                                            <use xlink:href="#custom-mask-1-outline"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <h6 class="mb-1">Custom Theme</h6>
+                        <p class="text-muted text-sm">Choose your Primary color</p>
+                        <div class="theme-color preset-color">
+                            <a href="#!" class="active" data-value="preset-1"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-2"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-3"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-4"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-5"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-6"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-7"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-8"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-9"><i class="ti ti-check"></i></a>
+                            <a href="#!" data-value="preset-10"><i class="ti ti-check"></i></a>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <h6 class="mb-1">Sidebar Caption</h6>
+                        <p class="text-muted text-sm">Sidebar Caption Hide/Show</p>
+                        <div class="row theme-nav-caption">
+                            <div class="col-6">
+                                <div class="d-grid">
+                                    <button class="preset-btn btn active" data-value="true"
+                                        onclick="layout_caption_change('true');">
+                                        <img src="{{ asset('assets/images/customizer/img-caption-1.svg') }}" alt="img"
+                                            class="img-fluid" width="70%" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-grid">
+                                    <button class="preset-btn btn" data-value="false"
+                                        onclick="layout_caption_change('false');">
+                                        <img src="{{ asset('assets/images/customizer/img-caption-2.svg') }}" alt="img"
+                                            class="img-fluid" width="70%" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="pc-rtl">
+                            <h6 class="mb-1">Theme Layout</h6>
+                            <p class="text-muted text-sm">LTR/RTL</p>
+                            <div class="row theme-direction">
+                                <div class="col-6">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn active" data-value="false"
+                                            onclick="layout_rtl_change('false');">
+                                            <img src="{{ asset('assets/images/customizer/img-layout-1.svg') }}"
+                                                alt="img" class="img-fluid" width="70%" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn" data-value="true"
+                                            onclick="layout_rtl_change('true');">
+                                            <img src="{{ asset('assets/images/customizer/img-layout-2.svg') }}"
+                                                alt="img" class="img-fluid" width="70%" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="pc-container-width">
+                            <h6 class="mb-1">Layout Width</h6>
+                            <p class="text-muted text-sm">Choose Full or Container Layout</p>
+                            <div class="row theme-container">
+                                <div class="col-6">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn active" data-value="false"
+                                            onclick="change_box_container('false')">
+                                            <img src="{{ asset('assets/images/customizer/img-container-1.svg') }}"
+                                                alt="img" class="img-fluid" width="70%" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-grid">
+                                        <button class="preset-btn btn" data-value="true"
+                                            onclick="change_box_container('true')">
+                                            <img src="{{ asset('assets/images/customizer/img-container-2.svg') }}"
+                                                alt="img" class="img-fluid" width="70%" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-grid">
+                            <button class="btn btn-light-danger" id="layoutreset">Reset Layout</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @livewireScripts
 </body>
 
 </html>

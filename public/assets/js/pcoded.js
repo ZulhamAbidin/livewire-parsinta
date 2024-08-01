@@ -1,6 +1,6 @@
 // 'use strict';
 var flg = '0';
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', function () {
   // feather icon start
   feather.replace();
   // feather icon end
@@ -323,7 +323,7 @@ function layout_change_default(){
   });
 }
 // preset color
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('livewire:navigated', function () {
   var if_exist = document.querySelectorAll('.preset-color');
   if (if_exist) {
     var preset_color = document.querySelectorAll('.preset-color > a');
@@ -378,6 +378,7 @@ function layout_caption_change(value) {
     }
   }
 }
+
 function preset_change(value) {
   document.getElementsByTagName('body')[0].setAttribute('data-pc-preset', value);
   var control = document.querySelector('.pct-offcanvas');
@@ -386,6 +387,7 @@ function preset_change(value) {
     document.querySelector(".preset-color > a[data-value='" + value + "']").classList.add('active');
   }
 }
+
 function layout_rtl_change(value) {
   var control = document.querySelector('#layoutmodertl');
   if (value == 'true') {
@@ -411,6 +413,7 @@ function layout_rtl_change(value) {
     }
   }
 }
+
 function layout_change(layout) {
   var control = document.querySelector('.pct-offcanvas');
   document.getElementsByTagName('body')[0].setAttribute('data-pc-theme', layout);
@@ -451,6 +454,7 @@ function layout_change(layout) {
     }
   }
 }
+
 function change_box_container(value) {
   if (document.querySelector('.pc-content')) {
     if (value == 'true') {
